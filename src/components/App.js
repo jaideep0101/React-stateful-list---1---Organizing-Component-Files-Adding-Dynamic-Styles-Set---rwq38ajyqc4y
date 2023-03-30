@@ -1,5 +1,4 @@
-import React from 'react'
-
+import React, { useState } from 'react';
 import '../styles/App.css';
 
 const data = {
@@ -25,9 +24,9 @@ const data = {
     'Adventures of Saiman',
     'Adventures of Shaktiman'
   ]
-}
+};
 const App = () => {
- const [selectedYear, setSelectedYear] = useState(null);
+  const [selectedYear, setSelectedYear] = useState(null);
 
   const handleYearChange = (e) => {
     setSelectedYear(e.target.value);
@@ -39,9 +38,8 @@ const App = () => {
   };
 
   const movies = getMoviesForYear(selectedYear);
-
-  return (
-       <div id="main">
+    return (
+    <div id="main">
       <select onChange={handleYearChange}>
         <option value={null}>Select Year</option>
         {Object.keys(data).map((year) => (
@@ -59,8 +57,9 @@ const App = () => {
         ))}
       </ul>
     </div>
-  )
-}
+  );
+};
+
+export default App;
 
 
-export default App;
