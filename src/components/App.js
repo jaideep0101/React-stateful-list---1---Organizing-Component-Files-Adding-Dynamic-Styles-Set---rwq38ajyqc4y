@@ -27,10 +27,37 @@ const data = {
   ]
 }
 const App = () => {
+ const [selectedYear, setSelectedYear] = useState(null);
+
+  const handleYearChange = (e) => {
+    setSelectedYear(e.target.value);
+  };
+
+  const getMoviesForYear = (year) => {
+    if (!year) return [];
+    return data[year] || [];
+  };
+
+  const movies = getMoviesForYear(selectedYear);
 
   return (
-    <div id="main">
-      
+       <div id="main">
+      <select onChange={handleYearChange}>
+        <option value={null}>Select Year</option>
+        {Object.keys(data).map((year) => (
+          <option key={year} value={year}>
+            {year}
+          </option>
+        ))}
+      </select>
+      <div id="selected-year">
+        {selectedYear ? `Selected year - ${selectedYear}` : 'No year selected'}
+      </div>
+      <ul>
+        {movies.map((movie) => (
+          <li key={movie}>{movie}</li>
+        ))}
+      </ul>
     </div>
   )
 }
